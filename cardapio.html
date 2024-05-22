@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardápio Virtual</title>
+  <link rel="stylesheet" href="cardapio.css">
+
+</head>
+</head>
+
+<body>
+  <div class="restaurant-name">Mirante à Mesa</div>
+  <div class="container">
+    <div class="menu">
+
+      <div class="tabs">
+        <button class="tablink" onclick="openSection('destaques')">Destaques</button>
+        <button class="tablink" onclick="openSection('frutos-do-mar')">Frutos do Mar</button>
+        <button class="tablink" onclick="openSection('carnes')">Carnes</button>
+        <button class="tablink" onclick="openSection('pratos-executivos')">Pratos Executivos</button>
+        <button class="tablink" onclick="openSection('sobre-mesas')">Sobremesas</button>
+      </div>
+      <div id="destaques" class="section">
+        <h3>Destaques</h3>
+        <div class="carousel">
+
+          <!-- slides do carousel -->
+        </div>
+      </div>
+
+      <div id="frutos-do-mar" class="section">
+        <h3>Frutos do Mar</h3>
+        <ul>
+          <!-- Frutos do Mar -->
+          <li>Peixe Grelhado - R$ 25,00 <br>
+            <span id="peixe-grelhado-quantity">0</span>
+            <button onclick="addItem('peixe-grelhado')">+</button>
+            <button onclick="removeItem('peixe-grelhado')">-</button>
+            <button onclick="addToOrder('peixe-grelhado')">Adicionar ao Pedido</button>
+          </li>
+
+          <li>Camarão ao Alho e Óleo - R$ 30,00 <br>
+            <span id="camarao-ao-alho-e-oleo-quantity">0</span>
+            <button onclick="addItem('camarao-ao-alho-e-oleo')">+</button>
+            <button onclick="removeItem('camarao-ao-alho-e-oleo')">-</button>
+            <button onclick="addToOrder('camarao-ao-alho-e-oleo')">Adicionar ao Pedido</button>
+          </li>
+
+          <li>Lula à Dorê - R$ 28,00<br>
+            <span id="lula-a-dore-quantity">0</span>
+            <button onclick="addItem('lula-a-dore')">+</button>
+            <button onclick="removeItem('lula-a-dore')">-</button>
+            <button onclick="addToOrder('lula-a-dore')">Adicionar ao Pedido</button>
+          </li>
+
+          <li>Moqueca de Camarão - R$ 35,00<br>
+            <span id="moqueca-de-camarao-quantity">0</span>
+            <button onclick="addItem('moqueca-de-camarao')">+</button>
+            <button onclick="removeItem('moqueca-de-camarao')">-</button>
+            <button onclick="addToOrder('moqueca-de-camarao')">Adicionar ao Pedido</button>
+          </li>
+
+          <li>Polvo à Lagareiro - R$ 40,00<br>
+            <span id="polvo-a-lagareiro-quantity">0</span>
+            <button onclick="addItem('polvo-a-lagareiro')">+</button>
+            <button onclick="removeItem('polvo-a-lagareiro')">-</button>
+            <button onclick="addToOrder('polvo-a-lagareiro')">Adicionar ao Pedido</button>
+          </li>
+
+          <li>Salmão ao Molho de Maracujá - R$ 38,00<br>
+            <span id="salmao-ao-molho-de-maracuja-quantity">0</span>
+            <button onclick="addItem('salmao-ao-molho-de-maracuja')">+</button>
+            <button onclick="removeItem('salmao-ao-molho-de-maracuja')">-</button>
+            <button onclick="addToOrder('salmao-ao-molho-de-maracuja')">Adicionar ao Pedido</button>
+          </li>
+
+          <li>Caranguejo Ensopado - R$ 32,00<br>
+            <span id="caranguejo-ensopado-quantity">0</span>
+            <button onclick="addItem('caranguejo-ensopado')">+</button>
+            <button onclick="removeItem('caranguejo-ensopado')">-</button>
+            <button onclick="addToOrder('caranguejo-ensopado')">Adicionar ao Pedido</button>
+          </li>
+
+          <li>Bolinho de Bacalhau - R$ 20,00<br>
+            <span id="bolinho-de-bacalhau-quantity">0</span>
+            <button onclick="addItem('bolinho-de-bacalhau')">+</button>
+            <button onclick="removeItem('bolinho-de-bacalhau')">-</button>
+            <button onclick="addToOrder('bolinho-de-bacalhau')">Adicionar ao Pedido</button>
+          </li>
+
+          <li>Risoto de Frutos do Mar - R$ 45,00<br>
+            <span id="risoto-de-frutos-do-mar-quantity">0</span>
+            <button onclick="addItem('risoto-de-frutos-do-mar')">+</button>
+            <button onclick="removeItem('risoto-de-frutos-do-mar')">-</button>
+            <button onclick="addToOrder('risoto-de-frutos-do-mar')">Adicionar ao Pedido</button>
+          </li>
+
+          <li>Robalo Grelhado - R$ 42,00<br>
+            <span id="robalo-grelhado-quantity">0</span>
+            <button onclick="addItem('robalo-grelhado')">+</button>
+            <button onclick="removeItem('robalo-grelhado')">-</button>
+            <button onclick="addToOrder('robalo-grelhado')">Adicionar ao Pedido</button>
+          </li>
+
+        </ul>
+      </div>
+      <div id="carnes" class="section" style="display:none;">
+        <h3>Carnes</h3>
+        <ul>
+                <li>Bife de Filé Mignon - R$ 35,00 <br>
+                    <span id="bife-de-file-mignon-quantity">0</span>
+                    <button onclick="addItem('bife-de-file-mignon')">+</button>
+                    <button onclick="removeItem('bife-de-file-mignon')">-</button>
+                    <button onclick="addToOrder('bife-de-file-mignon')">Adicionar ao Pedido</button>
+                </li>
+                <li>Costela de Porco - R$ 28,00 <br>
+                    <span id="costela-de-porco-quantity">0</span>
+                    <button onclick="addItem('costela-de-porco')">+</button>
+                    <button onclick="removeItem('costela-de-porco')">-</button>
+                    <button onclick="addToOrder('costela-de-porco')">Adicionar ao Pedido</button>
+                </li>
+                <li>Churrasco Misto - R$ 40,00 <br>
+                    <span id="churrasco-misto-quantity">0</span>
+                    <button onclick="addItem('churrasco-misto')">+</button>
+                    <button onclick="removeItem('churrasco-misto')">-</button>
+                    <button onclick="addToOrder('churrasco-misto')">Adicionar ao Pedido</button>
+                </li>
+                <li>Cordeiro Assado - R$ 45,00 <br>
+                    <span id="cordeiro-assado-quantity">0</span>
+                    <button onclick="addItem('cordeiro-assado')">+</button>
+                    <button onclick="removeItem('cordeiro-assado')">-</button>
+                    <button onclick="addToOrder('cordeiro-assado')">Adicionar ao Pedido</button>
+                </li>
+                <li>Picanha na Pedra - R$ 38,00 <br>
+                    <span id="picanha-na-pedra-quantity">0</span>
+                    <button onclick="addItem('picanha-na-pedra')">+</button>
+                    <button onclick="removeItem('picanha-na-pedra')">-</button>
+                    <button onclick="addToOrder('picanha-na-pedra')">Adicionar ao Pedido</button>
+                </li>
+                <li>Carne de Sol - R$ 32,00 <br>
+                    <span id="carne-de-sol-quantity">0</span>
+                    <button onclick="addItem('carne-de-sol')">+</button>
+                    <button onclick="removeItem('carne-de-sol')">-</button>
+                    <button onclick="addToOrder('carne-de-sol')">Adicionar ao Pedido</button>
+                </li>
+                <li>Paleta de Cordeiro - R$ 42,00 <br>
+                    <span id="paleta-de-cordeiro-quantity">0</span>
+                    <button onclick="addItem('paleta-de-cordeiro')">+</button>
+                    <button onclick="removeItem('paleta-de-cordeiro')">-</button>
+                    <button onclick="addToOrder('paleta-de-cordeiro')">Adicionar ao Pedido</button>
+                </li>
+                <li>Porco à Parmegiana - R$ 25,00 <br>
+                    <span id="porco-a-parmegiana-quantity">0</span>
+                    <button onclick="addItem('porco-a-parmegiana')">+</button>
+                    <button onclick="removeItem('porco-a-parmegiana')">-</button>
+                    <button onclick="addToOrder('porco-a-parmegiana')">Adicionar ao Pedido</button>
+                </li>
+                <li>Costelinha de Porco BBQ - R$ 30,00 <br>
+                    <span id="costelinha-de-porco-quantity">0</span>
+                    <button onclick="addItem('costelinha-de-porco')">+</button>
+                    <button onclick="removeItem('costelinha-de-porco')">-</button>
+                    <button onclick="addToOrder('costelinha-de-porco')">Adicionar ao Pedido</button>
+                </li>
+                <li>Bife à Milanesa - R$ 22,00 <br>
+                    <span id="bife-a-milanesa-quantity">0</span>
+                    <button onclick="addItem('bife-a-milanesa')">+</button>
+                    <button onclick="removeItem('bife-a-milanesa')">-</button>
+                    <button onclick="addToOrder('bife-a-milanesa')">Adicionar ao Pedido</button>
+                </li>
+            </ul>
+        </div>
+        
+        <div id="pratos-executivos" class="section" style="display:none;">
+          <h3>Pratos Executivos</h3>
+          <ul>
+            <li>Strogonoff de Frango - R$ 20,00 <br>
+              <span id="strogonoff-de-frango-quantity">0</span>
+              <button onclick="addItem('strogonoff-de-frango')">+</button>
+              <button onclick="removeItem('strogonoff-de-frango')">-</button>
+              <button onclick="addToOrder('strogonoff-de-frango')">Adicionar ao Pedido</button>
+            </li>
+            <li>Feijoada Completa - R$ 40,00<br>
+              <span id="feijoada-completa-quantity">0</span>
+              <button onclick="addItem('feijoada-completa')">+</button>
+              <button onclick="removeItem('feijoada-completa')">-</button>
+              <button onclick="addToOrder('feijoada-completa')">Adicionar ao Pedido</button>
+            </li>
+            <li>Peito de Frango Grelhado - R$ 18,00<br>
+              <span id="peito-de-frango-grelhado-quantity">0</span>
+              <button onclick="addItem('peito-de-frango-grelhado')">+</button>
+              <button onclick="removeItem('peito-de-frango-grelhado')">-</button>
+              <button onclick="addToOrder('peito-de-frango-grelhado')">Adicionar ao Pedido</button>
+            </li>
+            <li>Picanha na Chapa - R$ 35,00<br>
+              <span id="picanha-na-chapa-quantity">0</span>
+              <button onclick="addItem('picanha-na-chapa')">+</button>
+              <button onclick="removeItem('picanha-na-chapa')">-</button>
+              <button onclick="addToOrder('picanha-na-chapa')">Adicionar ao Pedido</button>
+            </li>
+            <li>Lasanha à Bolonhesa - R$ 25,00<br>
+              <span id="lasanha-a-bolonhesa-quantity">0</span>
+              <button onclick="addItem('lasanha-a-bolonhesa')">+</button>
+              <button onclick="removeItem('lasanha-a-bolonhesa')">-</button>
+              <button onclick="addToOrder('lasanha-a-bolonhesa')">Adicionar ao Pedido</button>
+            </li>
+            <li>Risoto de Frango - R$ 22,00<br>
+              <span id="risoto-de-frango-quantity">0</span>
+              <button onclick="addItem('risoto-de-frango')">+</button>
+              <button onclick="removeItem('risoto-de-frango')">-</button>
+              <button onclick="addToOrder('risoto-de-frango')">Adicionar ao Pedido</button>
+            </li>
+            <li>Filé de Peixe - R$ 27,00<br>
+              <span id="file-de-peixe-quantity">0</span>
+              <button onclick="addItem('file-de-peixe')">+</button>
+              <button onclick="removeItem('file-de-peixe')">-</button>
+              <button onclick="addToOrder('file-de-peixe')">Adicionar ao Pedido</button>
+            </li>
+            <li>Bife à Parmegiana - R$ 32,00<br>
+              <span id="bife-a-parmegiana-quantity">0</span>
+              <button onclick="addItem('bife-a-parmegiana')">+</button>
+              <button onclick="removeItem('bife-a-parmegiana')">-</button>
+              <button onclick="addToOrder('bife-a-parmegiana')">Adicionar ao Pedido</button>
+            </li>
+            <li>Espaguete à Bolonhesa - R$ 20,00<br>
+              <span id="espaguete-a-bolonhesa-quantity">0</span>
+              <button onclick="addItem('espaguete-a-bolonhesa')">+</button>
+              <button onclick="removeItem('espaguete-a-bolonhesa')">-</button>
+              <button onclick="addToOrder('espaguete-a-bolonhesa')">Adicionar ao Pedido</button>
+            </li>
+            <li>Salada de Frango - R$ 18,00<br>
+              <span id="salada-de-frango-quantity">0</span>
+              <button onclick="addItem('salada-de-frango')">+</button>
+              <button onclick="removeItem('salada-de-frango')">-</button>
+              <button onclick="addToOrder('salada-de-frango')">Adicionar ao Pedido</button>
+            </li>
+            
+          </ul>
+        </div>
+        
+  </ul>
+</div>
+      
+
+    <div id="sobre-mesas" class="section" style="display:none;">
+      <h3>Sobremesas</h3>
+      <ul>
+        
+          <li>Pudim de Leite - R$ 10,00 <br> <span id="pudim-de-leite-quantity">0</span>
+            <button onclick="addItem('pudim-de-leite')">+</button>
+            <button onclick="removeItem('pudim-de-leite')">-</button>
+            <button onclick="addToOrder('pudim-de-leite')">Adicionar ao Pedido</button>
+          </li>
+          <li>Torta de Limão - R$ 12,00<br> <span id="torta-de-limao-quantity">0</span>
+            <button onclick="addItem('torta-de-limao')">+</button>
+            <button onclick="removeItem('torta-de-limao')">-</button>
+            <button onclick="addToOrder('torta-de-limao')">Adicionar ao Pedido</button>
+          </li>
+          <li>Sorvete de Chocolate - R$ 8,00<br> <span id="sorvete-de-chocolate-quantity">0</span>
+            <button onclick="addItem('sorvete-de-chocolate')">+</button>
+            <button onclick="removeItem('sorvete-de-chocolate')">-</button>
+            <button onclick="addToOrder('sorvete-de-chocolate')">Adicionar ao Pedido</button>
+          </li>
+          <li>Cheesecake - R$ 15,00<br> <span id="cheesecake-quantity">0</span>
+            <button onclick="addItem('cheesecake')">+</button>
+            <button onclick="removeItem('cheesecake')">-</button>
+            <button onclick="addToOrder('cheesecake')">Adicionar ao Pedido</button>
+          </li>
+          <li>Brigadeiro - R$ 5,00<br> <span id="brigadeiro-quantity">0</span>
+            <button onclick="addItem('brigadeiro')">+</button>
+            <button onclick="removeItem('brigadeiro')">-</button>
+            <button onclick="addToOrder('brigadeiro')">Adicionar ao Pedido</button>
+          </li>
+          <li>Mousse de Maracujá - R$ 9,00<br> <span id="mousse-de-maracuja-quantity">0</span>
+            <button onclick="addItem('mousse-de-maracuja')">+</button>
+            <button onclick="removeItem('mousse-de-maracuja')">-</button>
+            <button onclick="addToOrder('mousse-de-maracuja')">Adicionar ao Pedido</button>
+          </li>
+          <li>Petit Gateau - R$ 18,00<br> <span id="petit-gateau-quantity">0</span>
+            <button onclick="addItem('petit-gateau')">+</button>
+            <button onclick="removeItem('petit-gateau')">-</button>
+            <button onclick="addToOrder('petit-gateau')">Adicionar ao Pedido</button>
+          </li>
+          <li>Tiramisu - R$ 16,00 <br><span id="tiramisu-quantity">0</span>
+            <button onclick="addItem('tiramisu')">+</button>
+            <button onclick="removeItem('tiramisu')">-</button>
+            <button onclick="addToOrder('tiramisu')">Adicionar ao Pedido</button>
+          </li>
+          <li>Pavê de Chocolate - R$ 14,00 <br><span id="pave-de-chocolate-quantity">0</span>
+            <button onclick="addItem('pave-de-chocolate')">+</button>
+            <button onclick="removeItem('pave-de-chocolate')">-</button>
+            <button onclick="addToOrder('pave-de-chocolate')">Adicionar ao Pedido</button>
+          </li>
+          <li>Cocada Cremosa - R$ 11,00<br> <span id="cocada-cremosa-quantity">0</span>
+            <button onclick="addItem('cocada-cremosa')">+</button>
+            <button onclick="removeItem('cocada-cremosa')">-</button>
+            <button onclick="addToOrder('cocada-cremosa')">Adicionar ao Pedido</button>
+          </li>
+      </ul>
+      
+      </ul>
+    </div>
+
+    </ul>
+  </div>
+  </div>
+
+
+  </div>
+  <script src="cardapio.js"></script>
+</body>
+
+</html>
