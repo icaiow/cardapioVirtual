@@ -41,4 +41,6 @@ if (quantity > 0) {
 } else {
     alert('Por favor, selecione a quantidade desejada para ' + itemName);
 }
+
+
 } 
