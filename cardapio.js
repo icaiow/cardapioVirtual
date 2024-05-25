@@ -23,4 +23,3 @@ if (currentQuantity > 0) {
     quantitySpan.textContent = currentQuantity - 1;
 }
 }
-
