@@ -23,24 +23,3 @@ if (currentQuantity > 0) {
     quantitySpan.textContent = currentQuantity - 1;
 }
 }
-
-// Função para adicionar ao pedido
-function addToOrder(itemName) {
-var quantity = parseInt(document.getElementById(itemName + '-quantity').textContent);
-if (quantity > 0) {
-    var item = {
-        name: itemName,
-        quantity: quantity
-    };
-    // Aqui você pode adicionar a lógica para adicionar o item ao pedido
-    // Por exemplo, você pode criar um objeto que representa o item e adicioná-lo a uma lista de pedidos
-    // Exemplo: orders.push(item);
-    alert('Item adicionado ao pedido: ' + itemName + ' - Quantidade: ' + quantity);
-    // Após adicionar ao pedido, você pode redefinir a quantidade para 0
-    document.getElementById(itemName + '-quantity').textContent = '0';
-} else {
-    alert('Por favor, selecione a quantidade desejada para ' + itemName);
-}
-
-
-} 
