@@ -4,13 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produto Adicionado</title>
-    <!-- Seus estilos CSS aqui -->
+    <link rel="stylesheet" href="produtos.css">
 </head>
 <body>
-    <h1>Produto Adicionado</h1>
-    <p>O produto <strong id="nome-produto"></strong> foi adicionado ao seu pedido com sucesso.</p>
-    <p>Quantidade: <strong id="quantidade"></strong></p>
-    <p><a href="/cardapio.html">Voltar para o cardápio</a></p>
-<script src="produtos.js"></script>
+    <div class="container">
+        <header>
+            <h1 class="title">Produto Adicionado</h1>
+        </header>
+        <main>
+            <p>O produto <strong id="nome-produto"></strong> foi adicionado ao seu pedido com sucesso.</p>
+            <p>Quantidade: <strong id="quantidade"></strong></p>
+        </main>
+        <footer>
+            <p><a href="/cardapio.html" class="back-link">Voltar para o cardápio</a></p>
+        </footer>
+    </div>
+    <script src="produtos.js"></script>
 </body>
 </html>
