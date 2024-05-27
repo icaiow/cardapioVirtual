@@ -3,22 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produto Adicionado</title>
+    <title>Detalhes do Pedido</title>
     <link rel="stylesheet" href="produtos.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1 class="title">Produto Adicionado</h1>
-        </header>
-        <main>
-            <p>O produto <strong id="nome-produto"></strong> foi adicionado ao seu pedido com sucesso.</p>
-            <p>Quantidade: <strong id="quantidade"></strong></p>
-        </main>
-        <footer>
-            <p><a href="/cardapio.html" class="back-link">Voltar para o cardápio</a></p>
-        </footer>
+    <h1>Detalhes do Pedido</h1>
+    <div id="pedido-details">
+        <!-- os produtos vao ser referenciados pelo js e vao aparecer aq -->
     </div>
-    <script src="produtos.js"></script>
+    <button id="finalizar-pedido">Finalizar Pedido</button>
+
+    <script>
+        // Recupera os dados do pedido do localStorage
+        const orderData = JSON.parse(localStorage.getItem('orderData'));
+        if (orderData) {
+            // Exibe os detalhes do pedido na página
+            const pedidoDetailsElement = document.getElementById('pedido-details');
+            pedidoDetailsElement.innerHTML = `
+                <p><strong>Nome do Cliente:</strong> ${orderData.nome}</p>
+                <p><strong>Total do Pedido:</strong> R$ ${orderData.total.toFixed(2)}</p>
+                <p><strong>Itens do Pedido:</strong></p>
+                <ul>
+                    ${orderData.itens.map(item => `<li>${item.produto} - Quantidade: ${item.quantidade}</li>`).join('')}
+                </ul>
+            `;
+
+            // Adiciona um evento de clique ao botão "Finalizar Pedido"
+            const finalizarPedidoBtn = document.getElementById('finalizar-pedido');
+            finalizarPedidoBtn.addEventListener('click', () => {
+                // Enviar os dados do pedido para o backend
+                fetch('http://localhost:5000/api/finalizar-pedido', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(orderData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Pedido finalizado com sucesso!');
+                    // Limpar o localStorage após o pedido ser finalizado
+                    localStorage.removeItem('orderData');
+                    // Redirecionar o usuário para outra página, se necessário
+                    window.location.href = 'cardapio.html';
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Houve um erro ao finalizar seu pedido.');
+                });
+            });
+        } else {
+            // Se não houver dados do pedido, exibe uma mensagem de erro
+            const pedidoDetailsElement = document.getElementById('pedido-details');
+            pedidoDetailsElement.innerHTML = '<p>Nenhum pedido encontrado.</p>';
+        }
+    </script>
 </body>
 </html>

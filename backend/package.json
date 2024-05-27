@@ -2,7 +2,7 @@
   "name": "cardapio",
   "version": "1.0.0",
   "description": "",
-  "main": "cardapio.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -19,6 +19,8 @@
   "homepage": "https://github.com/icaiow/cardapioVirtual#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "mongoose": "^5.10.9"
+
   }
 }

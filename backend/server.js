@@ -1,6 +1,19 @@
 const express = require('express');
+const connectDB = require('./db'); // Importa a função de conexão com o banco de dados
 const app = express();
-const port = 3000;
+const port = 5000;
+
+// Conecta-se ao banco de dados
+connectDB()
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Servidor rodando em http://localhost:${port}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Erro ao iniciar o servidor:', err);
+    process.exit(1); // Encerra o processo com um código de erro
+  });
 
 app.use(express.static('public'));
 
@@ -21,8 +34,4 @@ app.get('/pedido', (req, res) => {
         <p>Quantidade: ${quantidade}</p>
         <a href="/">Voltar</a>
     `);
-});
-
-app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`);
 });
