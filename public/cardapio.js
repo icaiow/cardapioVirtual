@@ -69,7 +69,7 @@ function finalizeOrder() {
             .then(response => response.json())
             .then(data => {
                 alert('Pedido enviado com sucesso!');
-                order = []; // Clear the order after submission
+                order = []; 
             })
             .catch(error => {
                 console.error('Erro:', error);

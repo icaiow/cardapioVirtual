@@ -1,7 +1,10 @@
 const express = require('express');
-const connectDB = require('./db'); // Importa a função de conexão com o banco de dados
+const connectDB = require('./backend/db');
+const pedidoRoutes = require('./backend/routes/pedido')
 const app = express();
 const port = 5000;
+
+app.use(express.json());
 
 // Conecta-se ao banco de dados
 connectDB()
@@ -16,6 +19,8 @@ connectDB()
   });
 
 app.use(express.static('public'));
+app.use('/api', pedidoRoutes);
+
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/cardapio.html');
