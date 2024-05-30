@@ -1,42 +1,46 @@
 const express = require('express');
-const connectDB = require('./backend/db');
-const pedidoRoutes = require('./backend/routes/pedido')
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const app = express();
-const port = 5000;
+const port = 3000;
 
-app.use(express.json());
+// Conectar ao MongoDB
+mongoose.connect('mongodb://localhost:27017/pedidos');
 
-// Conecta-se ao banco de dados
-connectDB()
-  .then(() => {
-    app.listen(port, () => {
-      console.log(`Servidor rodando em http://localhost:${port}`);
-    });
-  })
-  .catch((err) => {
-    console.error('Erro ao iniciar o servidor:', err);
-    process.exit(1); // Encerra o processo com um código de erro
-  });
+// Definição do esquema e modelo
+const pedidoSchema = new mongoose.Schema({
+    produto: String,
+    quantidade: Number
+});
 
+const Pedido = mongoose.model('Pedido', pedidoSchema);
+
+// Middleware para processar JSON
+app.use(bodyParser.json());
 app.use(express.static('public'));
-app.use('/api', pedidoRoutes);
 
-
+// Rota principal
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/cardapio.html');
 });
 
-app.get('/adicionar', (req, res) => {
-    const { produto, quantidade } = req.query;
-    res.redirect(`/pedido?produto=${encodeURIComponent(produto)}&quantidade=${quantidade}`);
+// Rota para adicionar pedidos
+app.post('/adicionarPedido', async (req, res) => {
+    const { produto, quantidade } = req.body;
+
+    const novoPedido = new Pedido({
+        produto,
+        quantidade
+    });
+
+    try {
+        await novoPedido.save();
+        res.status(200).send('Pedido adicionado com sucesso');
+    } catch (err) {
+        res.status(500).send('Erro ao adicionar pedido');
+    }
 });
 
-app.get('/pedido', (req, res) => {
-    const { produto, quantidade } = req.query;
-    res.send(`
-        <h1>Pedido</h1>
-        <p>Produto: ${produto}</p>
-        <p>Quantidade: ${quantidade}</p>
-        <a href="/">Voltar</a>
-    `);
+app.listen(port, () => {
+    console.log(`Servidor rodando em http://localhost:${port}`);
 });

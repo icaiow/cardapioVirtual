@@ -28,54 +28,35 @@ function removeItem(item) {
     }
 }
 
-let order = [];
-
-function addToOrder(item, price) {
+function addToOrder(item) {
     const quantity = quantities[item] || 0;
     if (quantity > 0) {
         const product = item.replace(/-/g, ' ');
-        const existingItem = order.find(orderItem => orderItem.produto === product);
 
-        if (existingItem) {
-            existingItem.quantidade += quantity;
-        } else {
-            order.push({ produto: product, quantidade: quantity, preco: price });
-        }
-
-        alert(`${quantity} ${product} adicionado(s) ao pedido.`);
+        // Fazer a requisição POST para o servidor
+        fetch('/adicionarPedido', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                produto: product,
+                quantidade: quantity
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = `/produtos.html?produto=${encodeURIComponent(product)}&quantidade=${quantity}`;
+            } else {
+                alert('Erro ao adicionar pedido');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro ao adicionar pedido');
+        });
     } else {
         alert('A quantidade deve ser maior que zero.');
     }
 }
 
-function finalizeOrder() {
-    const name = prompt("Por favor, insira seu nome:");
-    if (name && order.length > 0) {
-        const total = order.reduce((sum, item) => sum + item.quantidade * item.preco, 0);
-
-        const orderData = {
-            nome: name,
-            itens: order.map(item => ({ produto: item.produto, quantidade: item.quantidade })),
-            total: total
-        };
-
-        fetch('http://localhost:5000/api/pedidos', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(orderData)
-        })
-            .then(response => response.json())
-            .then(data => {
-                alert('Pedido enviado com sucesso!');
-                order = []; 
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Houve um erro ao enviar seu pedido.');
-            });
-    } else {
-        alert('Por favor, insira seu nome e adicione itens ao pedido.');
-    }
-}
