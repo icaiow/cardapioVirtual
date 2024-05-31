@@ -1,26 +1,44 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
+// Conectar ao MongoDB
+mongoose.connect('mongodb://localhost:27017/pedidos');
+
+// Definição do esquema e modelo
+const pedidoSchema = new mongoose.Schema({
+    produto: String,
+    quantidade: Number
+});
+
+const Pedido = mongoose.model('Pedido', pedidoSchema);
+
+// Middleware para processar JSON
+app.use(bodyParser.json());
 app.use(express.static('public'));
 
+// Rota principal
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/cardapio.html');
 });
 
-app.get('/adicionar', (req, res) => {
-    const { produto, quantidade } = req.query;
-    res.redirect(`/pedido?produto=${encodeURIComponent(produto)}&quantidade=${quantidade}`);
-});
+// Rota para adicionar pedidos
+app.post('/adicionarPedido', async (req, res) => {
+    const { produto, quantidade } = req.body;
 
-app.get('/pedido', (req, res) => {
-    const { produto, quantidade } = req.query;
-    res.send(`
-        <h1>Pedido</h1>
-        <p>Produto: ${produto}</p>
-        <p>Quantidade: ${quantidade}</p>
-        <a href="/">Voltar</a>
-    `);
+    const novoPedido = new Pedido({
+        produto,
+        quantidade
+    });
+
+    try {
+        await novoPedido.save();
+        res.status(200).send('Pedido adicionado com sucesso');
+    } catch (err) {
+        res.status(500).send('Erro ao adicionar pedido');
+    }
 });
 
 app.listen(port, () => {

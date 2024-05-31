@@ -1,11 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produto Adicionado</title>
     <link rel="stylesheet" href="produtos.css">
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -19,6 +22,19 @@
             <p><a href="/cardapio.html" class="back-link">Voltar para o cardápio</a></p>
         </footer>
     </div>
-    <script src="produtos.js"></script>
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const produto = urlParams.get('produto');
+
+        const quantidade = urlParams.get('quantidade');
+
+
+
+        // Exibir o produto e a quantidade na página
+        document.getElementById('nome-produto').innerText = produto;
+        document.getElementById('quantidade').innerText = quantidade;
+    </script>
 </body>
+
 </html>
