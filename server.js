@@ -5,7 +5,8 @@ const app = express();
 const port = 3000;
 
 // Conectar ao MongoDB
-mongoose.connect('mongodb://localhost:27017/pedidos');
+mongoose.connect('mongodb://127.0.0.1:27017/pedidos');
+
 
 // Definição do esquema e modelo
 const pedidoSchema = new mongoose.Schema({
