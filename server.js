@@ -42,6 +42,19 @@ app.post('/adicionarPedido', async (req, res) => {
     }
 });
 
+// rota para o cliente obter todos os pedidos em formato json
+app.get('/pedidos', async (req, res) => {
+    try {
+        const pedidos = await Pedido.find();
+        res.json(pedidos);
+    } catch (err) {
+        res.status(500).send('Erro ao obter pedidos');
+    }
+});
+
+
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
 });
+
+
