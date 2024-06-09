@@ -1,6 +1,6 @@
 # Cardápio Projeto
 
-Este projeto foi desenvolvido como parte da disciplina de DevOps. Ele consiste em um sistema de gerenciamento de cardápios utilizando diversas tecnologias modernas.
+Este projeto foi desenvolvido como projeto da disciplina de DevOps. Ele consiste em um sistema de cardápios utilizando diversas tecnologias.
 
 ## Tecnologias Utilizadas
 
